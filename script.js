@@ -248,8 +248,14 @@ form.addEventListener("submit", async (e) => {
       })
     });
 
-    // Redirect to thank-you page
-    window.location.href = "thankyou.html";
+   // 🎉 Show success popup before redirect
+   const popup = document.getElementById("successPopup");
+   popup.classList.remove("hidden");
+   
+   // Delay redirect for smooth UX
+   setTimeout(() => {
+     window.location.href = "thankyou.html";
+     }, 1600);
 
   } catch (err) {
     console.error(err);
