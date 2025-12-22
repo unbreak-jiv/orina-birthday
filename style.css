@@ -94,7 +94,7 @@ a:active,
   background-size: 400% 400%;
   -webkit-background-clip: text;
   color: transparent;
-  animation: slowGradient 18s linear infinite;
+  animation: slowGradient 10s linear infinite;
 }
 
 /* 🎥 YouTube */
