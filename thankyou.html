@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You ❤️</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+  * {
+    -webkit-tap-highlight-color: transparent;
+    }
+   /*CUSTOM TAP FEEDBACK */
+   a,
+   button {
+     transition: transform 0.12s ease, box-shadow 0.12s ease;
+   }
+
+img,
+audio,
+video {
+  -webkit-user-drag: none;
+  user-drag: none;
+  user-select: none;
+}
+
+a:active,
+button:active {
+  transform: scale(0.96);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top, #111, #000 70%);
+      color: #fff;
+      font-family: "Inter", sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .wrapper {
+      max-width: 440px;
+      width: 100%;
+      animation: fadeIn 1.1s ease;
+    }
+
+    .block {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(14px);
+      border-radius: 22px;
+      padding: 22px 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 0 34px rgba(0,0,0,0.6);
+    }
+
+    .block h2 {
+      margin-bottom: 10px;
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    .block p {
+      font-size: 14px;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    /* 🌟 THANK YOU BLOCK */
+    .thank {
+      border: 1px solid rgba(255,122,0,0.25);
+      box-shadow: 0 0 28px rgba(255,122,0,0.35);
+    }
+
+    .thank h2 {
+      background: linear-gradient(
+        270deg,
+        #ff7a00,
+        #ffd36a,
+        #ff3c00
+      );
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: slowGradient 16s linear infinite;
+    }
+
+    /* 📅 EVENT DETAILS */
+    .event h2 {
+      color: #ffb347;
+    }
+
+    .event-details {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .event-details span {
+      display: block;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.08);
+      opacity: 0.95;
+    }
+
+    /* 🔥 YOUTUBE PROMO */
+    .highlight {
+      background: linear-gradient(
+        270deg,
+        #ff7a00,
+        #ffd36a,
+        #ff3c00
+      );
+      background-size: 400% 400%;
+      animation: slowGradient 18s linear infinite;
+      color: #000;
+    }
+
+    .highlight h2 {
+      font-size: 22px;
+    }
+
+    .highlight p {
+      opacity: 0.85;
+    }
+
+    .highlight a {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 14px 22px;
+      border-radius: 30px;
+      background: #000;
+      color: #ff7a00;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    .highlight a:hover {
+      transform: translateY(-1px);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes slowGradient {
+      0% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<audio id="linkClick" src="assets/click.mp3" preload="auto"></audio>
+<body>
+  <div class="wrapper">
+
+    <!-- ✅ BLOCK 1: THANK YOU -->
+    <div class="block thank">
+      <h2>Thank you for your wish 💖</h2>
+      <p>
+        Your birthday message has been successfully received 🎉  
+        It truly means a lot.
+      </p>
+    </div>
+
+    <!-- 📅 BLOCK 2: EVENT DETAILS -->
+    <div class="block event">
+      <h2>You’re now part of Orina’s Birthday Event 🎂</h2>
+      <p>
+        Organised with love by the <b>Unstoppable Family</b> 🤍
+      </p>
+
+      <div class="event-details">
+        <span>📅 <b>Date:</b> Announced soon on WePlay by Unstoppable’s team</span>
+        <span>⏰ <b>Time:</b> Announced soon on WePlay by Unstoppable’s team</span>
+      </div>
+    </div>
+
+    <!-- 🎥 BLOCK 3: YOUTUBE PROMOTION -->
+    <div class="block highlight">
+      <h2>Watch Orina’s Birthday Video Soon 🎊</h2>
+      <p>
+        The complete birthday celebration will be released on the  
+        <b>Unstoppable Family</b> YouTube channel 🚀
+      </p>
+
+      <a href="https://www.youtube.com/@UNSTOPPABLE-f8e" target="_blank">
+        ▶ Visit Unstoppable Family on YouTube
+      </a>
+    </div>
+
+  </div>
+<script>
+  document.addEventListener("contextmenu", e => e.preventDefault());
+</script>
+</body>
+<script>
+  const linkClick = document.getElementById("linkClick");
+  linkClick.volume = 0.4;
+
+  document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    successClick.currentTime = 0;
+    successClick.play();
+
+    const url = link.href;
+    const target = link.target;
+
+    setTimeout(() => {
+      if (target === "_blank") {
+        window.open(url, "_blank");
+      } else {
+        window.location.href = url;
+        }
+      
+    }, 120);
+      
+    });
+    
+  });
