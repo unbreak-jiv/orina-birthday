@@ -13,6 +13,8 @@ form.noValidate = true;
 const nameInput = document.getElementById("name");
 const submitBtn = document.querySelector(".submit-btn");
 const deadlineBanner = document.querySelector(".deadline");
+const recordTick = document.getElementById("recordTick");
+const uploadTick = document.getElementById("uploadTick");
 
 // VALIDATION LIMITS
 const MIN_NAME_LENGTH = 3;
@@ -175,17 +177,26 @@ fileInput.addEventListener("change", () => {
 
 // MODAL ACTIONS
 redoBtn.addEventListener("click", () => {
-  successClick.currentTime = 0; successClick.play();
   modal.classList.add("hidden");
   mediaBlob = null;
   confirmed = false;
   fileInput.value = "";
+
+  recordTick.classList.add("hidden");
+  uploadTick.classList.add("hidden");
 });
 
 confirmBtn.addEventListener("click", () => {
-  successClick.currentTime = 0; successClick.play();
   confirmed = true;
   modal.classList.add("hidden");
+
+  if (mediaBlob) {
+    if (mediaBlob.type.startsWith("audio")) {
+      recordTick.classList.remove("hidden");
+    } else {
+      uploadTick.classList.remove("hidden");
+    }
+  }
 });
 
 // FORM SUBMIT
