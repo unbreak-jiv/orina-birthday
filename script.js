@@ -39,7 +39,7 @@ const nextBtn = document.getElementById("nextBtn");
 // Cloudinary config
 const CLOUD_NAME = "dqmcqdtxn";
 const UPLOAD_PRESET = "orina_birthday";
-const MAKE_WEBHOOK_URL = "YOUR_MAKE_WEBHOOK_URL_HERE"; // Replace with actual webhook
+const MAKE_WEBHOOK_URL = "https://hook.eu2.make.com/ywszf6rc5ymdw1evmut2jx4316x8t2cc";
 
 // Submission deadline
 const DEADLINE = new Date("2025-12-25T23:59:00");
