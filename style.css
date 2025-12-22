@@ -1,0 +1,556 @@
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: radial-gradient(circle at top, #111, #000 70%);
+  color: #fff;
+  overflow-x: hidden;
+}
+/*BALLOON REVERSE RAIN */
+.balloon-rain {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -40px;
+  font-size: 20px; /* same size */
+  opacity: 0.15;
+  animation-name: floatUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-120vh);
+  }
+}
+
+/* remove blue colour tap*/
+button,
+a,
+label {
+  -webkit-tap-highlight-color: transparent;
+}
+/*CUSTOM TAP FEEDBACK*/
+button,
+a,
+.upload {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+button:active,
+a:active,
+.upload:active {
+  transform: scale(0.96);
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.6);
+}
+/* =========================
+   HEADER
+========================= */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand img {
+  height: 42px; /* LOGO HEIGHT */
+}
+
+/* 🔥 Unstoppable Family BIG AS LOGO */
+.brand span {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(
+    270deg,
+    #ff7a00,
+    #ffd36a,
+    #ff3c00
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: slowGradient 18s linear infinite;
+}
+
+/* 🎥 YouTube */
+.youtube {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  background: linear-gradient(
+    270deg,
+    #ff3c00,
+    #ffb347,
+    #ff7a00
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: slowGradient 18s linear infinite;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+.container {
+  max-width: 430px;
+  margin: auto;
+  padding: 16px;
+}
+@media (min-width: 900px) {
+  .container {
+    max-width: 520px;
+    min-height: calc(100vh - 140px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+@media (min-width: 900px) {
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(255,122,0,0.12), transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(255,60,0,0.1), transparent 45%);
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+@media (min-width: 900px) {
+  .pfp {
+    width: 140px;
+    height: 140px;
+  }
+
+  .name {
+    font-size: 52px;
+  }
+
+  .card {
+    transform: scale(1.03);
+  }
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero {
+  text-align: center;
+  margin-top: 12px;
+  animation: fadeUp 1s ease;
+}
+
+.pfp {
+  width: 120px;
+  height: 120px;
+  margin: auto;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(45deg, #ff7a00, #ff3c00);
+  box-shadow: 0 0 30px rgba(255, 120, 0, 0.5);
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.pfp img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.subtitle {
+  margin-top: 14px;
+  opacity: 0.75;
+}
+
+.name {
+  margin-top: 6px;
+  font-size: 42px;
+}
+
+.orina {
+  color: #ff7a00;
+  text-shadow: 0 0 16px rgba(255, 120, 0, 0.6);
+}
+
+.tanu {
+  font-size: 22px;
+  opacity: 0.85;
+}
+
+.event {
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.event span {
+  background: linear-gradient(
+    270deg,
+    #ff7a00,
+    #ffd36a,
+    #ff3c00
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: slowGradient 20s linear infinite;
+}
+/* =========================
+   SUBMISSION DEADLINE
+========================= */
+.deadline {
+  margin-top: 18px;
+  margin-bottom: 6px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.deadline-date {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+
+  background: linear-gradient(
+    270deg,
+    #ff7a00,
+    #ffd36a,
+    #ff3c00
+  );
+  background-size: 400% 400%;
+
+  color: #000;
+  font-weight: 600;
+
+  animation: slowGradient 18s linear infinite;
+  box-shadow: 0 0 14px rgba(255, 120, 0, 0.45);
+}
+/* =========================
+   FORM CARD
+========================= */
+.card {
+  margin-top: 24px;
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-top: 14px;
+}
+
+input {
+  width: 100%;
+  margin-top: 6px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: none;
+  background: #111;
+  color: white;
+  outline: none;
+}
+
+.media-options {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.media-options button,
+.upload {
+  flex: 1;
+  padding: 14px;
+  border-radius: 16px;
+  border: none;
+  background: #191919;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.media-options button:hover,
+.upload:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(255, 120, 0, 0.3);
+}
+
+/* SUBMIT */
+.submit-btn {
+  margin-top: 22px;
+  width: 100%;
+  padding: 16px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  background: linear-gradient(90deg, #ff7a00, #ff3c00);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 26px rgba(255, 120, 0, 0.45);
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  text-align: center;
+  margin: 20px 0 10px;
+}
+
+/* 🔥 INDRAV BRANDING */
+.indrav {
+  font-family: "IM Fell Double Pica SC", serif;
+  font-size: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  animation: floatSubtle 3s ease-in-out infinite;
+}
+
+/* Arrow fixed */
+.arrow {
+  color: #ff7a00;
+}
+
+/* 🔥 Gradient loop RIGHT → LEFT */
+.indrav-text {
+  background: linear-gradient(
+    270deg,
+    #ff7a00,
+    #ffffff,
+    #ff7a00
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: slowGradientReverse 14s linear infinite;
+}
+
+/* 🔥 SLOGAN */
+.slogan {
+  margin-top: 8px;
+  font-size: 14px;
+  background: linear-gradient(
+    270deg,
+    #ff7a00,
+    #ffd36a,
+    #ff3c00
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: slowGradient 22s linear infinite;
+}
+
+/* =========================
+   ANIMATIONS (SAFE)
+========================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 18px rgba(255, 120, 0, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 34px rgba(255, 120, 0, 0.7);
+  }
+}
+
+@keyframes slowGradient {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* RIGHT → LEFT LOOP */
+@keyframes slowGradientReverse {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes floatSubtle {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* =========================
+   MOBILE SAFETY
+========================= */
+@media (max-height: 700px) {
+  footer {
+    margin-top: 10px;
+  }
+}
+/* =========================
+   RECHECK MODAL
+========================= */
+.recheck-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.recheck-modal.hidden {
+  display: none;
+}
+
+.recheck-card {
+  width: 92%;
+  max-width: 360px;
+  background: #0e0e0e;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(255,122,0,0.35);
+  animation: fadeUp 0.4s ease;
+}
+
+.recheck-card h3 {
+  margin-bottom: 14px;
+}
+
+.recheck-card audio,
+.recheck-card video {
+  width: 100%;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+.recheck-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.primary-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(90deg, #ff7a00, #ff3c00);
+  color: white;
+  cursor: pointer;
+}
+
+.secondary-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+  background: #222;
+  color: white;
+  cursor: pointer;
+}
+/* =========================
+   BGM TOGGLE 
+========================= */
+#bgmToggle {
+  position: fixed;
+  right: 18px;
+  bottom: 22px;
+  z-index: 1000;
+
+  padding: 12px 18px;
+  border-radius: 99px;
+
+  background: rgba(18, 18, 18, 0.9);
+  color: #fff;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.7),
+    inset 0 0 0 1px rgba(255, 122, 0, 0.25);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+/* Hover (desktop) */
+#bgmToggle:hover {
+  background: rgba(28, 28, 28, 0.95);
+  box-shadow:
+    0 14px 45px rgba(0, 0, 0, 0.85),
+    inset 0 0 0 1px rgba(255, 122, 0, 0.45);
+}
+
+/* Active / Tap */
+#bgmToggle:active {
+  transform: scale(0.96);
+}
+
+/* Optional: glow when music is playing */
+#bgmToggle.playing {
+  box-shadow:
+    0 0 30px rgba(255, 122, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 122, 0, 0.6);
+}
+@media (max-width: 420px) {
+  #bgmToggle {
+    bottom: 80px;
+  }
+}
+.highlight a:active {
+  transform: scale(0.95);
+  box-shadow: inset 0 0 0 2px rgba(255,122,0,0.6);
+}
+
+img,
+audio,
+video {
+  -webkit-user-drag: none;
+  user-drag: none;
+  user-select: none;
+}
