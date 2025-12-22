@@ -158,6 +158,19 @@ a:active,
   }
 }
 
+@media (min-width: 900px) {
+  .pfp {
+    width: 140px;
+    height: 140px;
+  }
+  .name {
+    font-size: 52px;
+  }
+  .card {
+    transform: scale(1.03);
+  }
+}
+
 /* =========================
    HERO SECTION
 ========================= */
@@ -411,9 +424,6 @@ footer {
   50% { transform: translateY(-3px); }
 }
 
-/* =========================
-   MOBILE SAFETY
-========================= */
 @media (max-height: 700px) {
   footer {
     margin-top: 10px;
@@ -537,11 +547,7 @@ footer {
     0 0 30px rgba(255, 122, 0, 0.6),
     inset 0 0 0 1px rgba(255, 122, 0, 0.6);
 }
-@media (max-width: 420px) {
-  #bgmToggle {
-    bottom: 80px;
-  }
-}
+
 .highlight a:active {
   transform: scale(0.95);
   box-shadow: inset 0 0 0 2px rgba(255,122,0,0.6);
