@@ -89,13 +89,14 @@
 
     <div class="media-options">
       <button type="button" id="recordBtn">
-        <b><big>🎤️ Record Audio</big></b><br/><p>(max:50mb)</p>
-      </button>
+        <b><big>🎤️ Record Audio</big></b>
+        <span class="tick hidden" id="recordTick"></span><br/><p>(max:50mb)</p>
+        </button>
 
       <label class="upload" align="center">
-        📤 Upload <br/> Audio / Video
+        📤 Upload <br/> Audio / Video<span class="tick hidden" id="uploadTick">✔</span>
         <input id="fileInput" type="file" accept="audio/*,video/*" hidden>
-      </label>
+        </label>
     </div>
 
     <audio id="preview" controls hidden></audio>
