@@ -10,161 +10,147 @@
   <style>
   * {
     -webkit-tap-highlight-color: transparent;
-    }
-   /*CUSTOM TAP FEEDBACK */
-   a,
-   button {
-     transition: transform 0.12s ease, box-shadow 0.12s ease;
-   }
+  }
+  /* Custom tap feedback */
+  a,
+  button {
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  img,
+  audio,
+  video {
+    -webkit-user-drag: none;
+    user-drag: none;
+    user-select: none;
+  }
+  a:active,
+  button:active {
+    transform: scale(0.96);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+  }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top, #111, #000 70%);
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    text-align: center;
+    padding: 20px;
+  }
+  .wrapper {
+    max-width: 440px;
+    width: 100%;
+    animation: fadeIn 1.1s ease;
+  }
+  .block {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(14px);
+    border-radius: 22px;
+    padding: 22px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 0 34px rgba(0,0,0,0.6);
+  }
+  .block h2 {
+    margin-bottom: 10px;
+    font-size: 21px;
+    font-weight: 700;
+  }
+  .block p {
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+  /* 🌟 THANK YOU BLOCK */
+  .thank {
+    border: 1px solid rgba(255,122,0,0.25);
+    box-shadow: 0 0 28px rgba(255,122,0,0.35);
+  }
+  .thank h2 {
+    background: linear-gradient(
+      270deg,
+      #ff7a00,
+      #ffd36a,
+      #ff3c00
+    );
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: slowGradient 16s linear infinite;
+  }
 
-img,
-audio,
-video {
-  -webkit-user-drag: none;
-  user-drag: none;
-  user-select: none;
-}
+  /* 📅 EVENT DETAILS */
+  .event h2 {
+    color: #ffb347;
+  }
 
-a:active,
-button:active {
-  transform: scale(0.96);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
-}
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: radial-gradient(circle at top, #111, #000 70%);
-      color: #fff;
-      font-family: "Inter", sans-serif;
-      text-align: center;
-      padding: 20px;
-    }
+  .event-details {
+    margin-top: 10px;
+    font-size: 14px;
+  }
 
-    .wrapper {
-      max-width: 440px;
-      width: 100%;
-      animation: fadeIn 1.1s ease;
-    }
+  .event-details span {
+    display: block;
+    margin-top: 8px;
+    padding: 6px 10px;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.08);
+    opacity: 0.95;
+  }
 
-    .block {
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(14px);
-      border-radius: 22px;
-      padding: 22px 20px;
-      margin-bottom: 18px;
-      box-shadow: 0 0 34px rgba(0,0,0,0.6);
-    }
+  /* 🔥 YOUTUBE PROMO */
+  .highlight {
+    background: linear-gradient(
+      270deg,
+      #ff7a00,
+      #ffd36a,
+      #ff3c00
+    );
+    background-size: 400% 400%;
+    animation: slowGradient 18s linear infinite;
+    color: #000;
+  }
 
-    .block h2 {
-      margin-bottom: 10px;
-      font-size: 21px;
-      font-weight: 700;
-    }
+  .highlight h2 {
+    font-size: 22px;
+  }
 
-    .block p {
-      font-size: 14px;
-      line-height: 1.6;
-      opacity: 0.9;
-    }
+  .highlight p {
+    opacity: 0.85;
+  }
 
-    /* 🌟 THANK YOU BLOCK */
-    .thank {
-      border: 1px solid rgba(255,122,0,0.25);
-      box-shadow: 0 0 28px rgba(255,122,0,0.35);
-    }
+  .highlight a {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 14px 22px;
+    border-radius: 30px;
+    background: #000;
+    color: #ff7a00;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  }
 
-    .thank h2 {
-      background: linear-gradient(
-        270deg,
-        #ff7a00,
-        #ffd36a,
-        #ff3c00
-      );
-      background-size: 400% 400%;
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: slowGradient 16s linear infinite;
-    }
+  .highlight a:hover {
+    transform: translateY(-1px);
+  }
 
-    /* 📅 EVENT DETAILS */
-    .event h2 {
-      color: #ffb347;
-    }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+  }
 
-    .event-details {
-      margin-top: 10px;
-      font-size: 14px;
-    }
-
-    .event-details span {
-      display: block;
-      margin-top: 8px;
-      padding: 6px 10px;
-      border-radius: 12px;
-      background: rgba(0,0,0,0.35);
-      border: 1px solid rgba(255,255,255,0.08);
-      opacity: 0.95;
-    }
-
-    /* 🔥 YOUTUBE PROMO */
-    .highlight {
-      background: linear-gradient(
-        270deg,
-        #ff7a00,
-        #ffd36a,
-        #ff3c00
-      );
-      background-size: 400% 400%;
-      animation: slowGradient 18s linear infinite;
-      color: #000;
-    }
-
-    .highlight h2 {
-      font-size: 22px;
-    }
-
-    .highlight p {
-      opacity: 0.85;
-    }
-
-    .highlight a {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 14px 22px;
-      border-radius: 30px;
-      background: #000;
-      color: #ff7a00;
-      font-weight: 600;
-      text-decoration: none;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
-    }
-
-    .highlight a:hover {
-      transform: translateY(-1px);
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    @keyframes slowGradient {
-      0% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+  @keyframes slowGradient {
+    0% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
   </style>
 </head>
-<audio id="linkClick" src="assets/click.mp3" preload="auto"></audio>
 <body>
+  <audio id="linkClick" src="assets/click.mp3" preload="auto"></audio>
   <div class="wrapper">
 
     <!-- ✅ BLOCK 1: THANK YOU -->
@@ -204,32 +190,16 @@ button:active {
 
   </div>
 <script>
+  // Disable right-click & link click sound
   document.addEventListener("contextmenu", e => e.preventDefault());
-</script>
-</body>
-<script>
   const linkClick = document.getElementById("linkClick");
   linkClick.volume = 0.4;
-
   document.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    successClick.currentTime = 0;
-    successClick.play();
-
-    const url = link.href;
-    const target = link.target;
-
-    setTimeout(() => {
-      if (target === "_blank") {
-        window.open(url, "_blank");
-      } else {
-        window.location.href = url;
-        }
-      
-    }, 120);
-      
+    link.addEventListener("click", () => {
+      linkClick.currentTime = 0;
+      linkClick.play();
     });
-    
   });
+</script>
+</body>
+</html>
