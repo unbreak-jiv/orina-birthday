@@ -53,9 +53,6 @@ let currentIndex = 0;
 let recording = false;
 let confirmed = false;
 let recordedSize = 0;
-let mediaFiles = [];        // all selected / recorded files (max 3)
-let confirmedFiles = [];   // confirmed files only
-let currentReviewIndex = 0;
 
 // Music state
 const bgm = document.getElementById("bgm");
