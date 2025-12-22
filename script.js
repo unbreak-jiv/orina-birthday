@@ -53,6 +53,9 @@ let currentIndex = 0;
 let recording = false;
 let confirmed = false;
 let recordedSize = 0;
+let mediaFiles = [];        // all selected / recorded files (max 3)
+let confirmedFiles = [];   // confirmed files only
+let currentReviewIndex = 0;
 
 // Music state
 const bgm = document.getElementById("bgm");
@@ -76,6 +79,29 @@ musicToggle.addEventListener("click", () => {
     musicToggle.classList.remove("playing");
   }
 });
+
+function updateFileUI() {
+  const fileCountEl = document.getElementById("fileCount");
+  const recordTick = document.getElementById("recordTick");
+  const uploadTick = document.getElementById("uploadTick");
+
+  const count = confirmedFiles.length;
+
+  // Counter text
+  if (count > 0) {
+    fileCountEl.textContent = `${count}/3 files selected`;
+    fileCountEl.classList.remove("hidden");
+  } else {
+    fileCountEl.classList.add("hidden");
+  }
+
+  // Tick logic
+  const hasAudio = confirmedFiles.some(f => f.type.startsWith("audio"));
+  const hasUpload = confirmedFiles.some(f => f.source === "upload");
+
+  recordTick.classList.toggle("hidden", !hasAudio);
+  uploadTick.classList.toggle("hidden", !hasUpload);
+}
 
 // Validate file size
 function validateMediaSize(blob) {
