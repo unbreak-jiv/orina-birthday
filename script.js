@@ -1,22 +1,17 @@
-// Disable right-click
-document.addEventListener("contextmenu", e => e.preventDefault());
-
-// ===============================
-// ELEMENTS
-// ===============================
-const MAKE_WEBHOOK_URL = "https://hook.eu2.make.com/ywszf6rc5ymdw1evmut2jx4316x8t2cc";
-const recordBtn = document.getElementById("recordBtn");
-const fileInput = document.getElementById("fileInput");
+// Get DOM elements
 const form = document.getElementById("wishForm");
 form.setAttribute("action", "javascript:void(0)");
 form.noValidate = true;
 const nameInput = document.getElementById("name");
 const submitBtn = document.querySelector(".submit-btn");
 const deadlineBanner = document.querySelector(".deadline");
+const recordBtn = document.getElementById("recordBtn");
+const fileInput = document.getElementById("fileInput");
 const recordTick = document.getElementById("recordTick");
 const uploadTick = document.getElementById("uploadTick");
+const fileCount = document.getElementById("fileCount");
 
-// VALIDATION LIMITS
+// Validation Limits
 const MIN_NAME_LENGTH = 3;
 const MAX_AUDIO_SIZE = 50 * 1024 * 1024; // 50 MB
 const MAX_VIDEO_SIZE = 100 * 1024 * 1024; // 100 MB
@@ -27,31 +22,11 @@ const errorClick = document.getElementById("errorClick");
 successClick.volume = 0.4;
 errorClick.volume = 0.45;
 
-// Unlock audio on first user gesture (avoids autoplay blocking)
+// Unlock audio on first user gesture
 document.addEventListener("click", () => {
   successClick.load();
   errorClick.load();
 }, { once: true });
-
-// Functions
-function validateMediaSize(blob) {
-  if (!blob || !blob.type) return false;
-  // Audio
-  if (blob.type.startsWith("audio")) {
-    if (blob.size > MAX_AUDIO_SIZE) {
-      alert("Audio file size must be 50 MB or less.");
-      return false;
-    }
-  }
-  // Video
-  if (blob.type.startsWith("video")) {
-    if (blob.size > MAX_VIDEO_SIZE) {
-      alert("Video file size must be 100 MB or less.");
-      return false;
-    }
-  }
-  return true;
-}
 
 // Modal elements
 const modal = document.getElementById("recheckModal");
@@ -59,14 +34,12 @@ const recheckAudio = document.getElementById("recheckAudio");
 const recheckVideo = document.getElementById("recheckVideo");
 const redoBtn = document.getElementById("redoBtn");
 const confirmBtn = document.getElementById("confirmBtn");
-
-// Background music
-const bgm = document.getElementById("bgm");
-const musicToggle = document.getElementById("bgmToggle");
+const nextBtn = document.getElementById("nextBtn");
 
 // Cloudinary config
 const CLOUD_NAME = "dqmcqdtxn";
 const UPLOAD_PRESET = "orina_birthday";
+const MAKE_WEBHOOK_URL = "YOUR_MAKE_WEBHOOK_URL_HERE"; // Replace with actual webhook
 
 // Submission deadline
 const DEADLINE = new Date("2025-12-25T23:59:00");
@@ -74,16 +47,20 @@ const DEADLINE = new Date("2025-12-25T23:59:00");
 // State
 let mediaRecorder;
 let chunks = [];
-let mediaBlob = null;
+let mediaBlobs = [];
+let usingRecord = false;
+let currentIndex = 0;
 let recording = false;
 let confirmed = false;
 let recordedSize = 0;
 
 // Music state
+const bgm = document.getElementById("bgm");
 let musicPlaying = false;
 bgm.volume = 0.18;
 
-// MUSIC TOGGLE (USER must click to start)
+// Music Toggle
+const musicToggle = document.getElementById("bgmToggle");
 musicToggle.addEventListener("click", () => {
   successClick.currentTime = 0; successClick.play();
   if (!musicPlaying) {
@@ -99,6 +76,24 @@ musicToggle.addEventListener("click", () => {
     musicToggle.classList.remove("playing");
   }
 });
+
+// Validate file size
+function validateMediaSize(blob) {
+  if (!blob || !blob.type) return false;
+  if (blob.type.startsWith("audio")) {
+    if (blob.size > MAX_AUDIO_SIZE) {
+      alert("Audio file size must be 50 MB or less.");
+      return false;
+    }
+  }
+  if (blob.type.startsWith("video")) {
+    if (blob.size > MAX_VIDEO_SIZE) {
+      alert("Video file size must be 100 MB or less.");
+      return false;
+    }
+  }
+  return true;
+}
 
 // RECHECK MODAL
 function openRecheck(blob) {
@@ -120,14 +115,13 @@ function openRecheck(blob) {
 
 // AUDIO RECORDING
 recordBtn.addEventListener("click", async () => {
-  // Play click sound for record button
   successClick.currentTime = 0; successClick.play();
 
   if (!recording) {
     recordedSize = 0;
     if (!window.MediaRecorder) {
       errorClick.currentTime = 0; errorClick.play();
-      alert("Audio recording is not supported on this browser. Please upload a file");
+      alert("Audio recording is not supported on this browser. Please upload a file.");
       return;
     }
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -146,11 +140,15 @@ recordBtn.addEventListener("click", async () => {
     mediaRecorder.onstop = () => {
       const recordedBlob = new Blob(chunks, { type: "audio/webm" });
       if (!validateMediaSize(recordedBlob)) {
-        mediaBlob = null;
         return;
       }
-      mediaBlob = recordedBlob;
-      openRecheck(mediaBlob);
+      mediaBlobs = [recordedBlob];
+      usingRecord = true;
+      currentIndex = 0;
+      fileCount.classList.add("hidden");
+      openRecheck(mediaBlobs[currentIndex]);
+      nextBtn.style.display = "none";
+      confirmBtn.style.display = "block";
     };
     mediaRecorder.start();
     recording = true;
@@ -165,33 +163,72 @@ recordBtn.addEventListener("click", async () => {
 
 // FILE UPLOAD
 fileInput.addEventListener("change", () => {
-  const file = fileInput.files[0];
-  if (!file) return;
-  if (!validateMediaSize(file)) {
+  const files = Array.from(fileInput.files);
+  if (files.length === 0) return;
+  if (files.length > 3) {
+    errorClick.currentTime = 0; errorClick.play();
+    alert("You can upload a maximum of 3 files.");
     fileInput.value = "";
+    fileCount.classList.add("hidden");
     return;
   }
-  mediaBlob = file;
-  openRecheck(mediaBlob);
+  // Validate each file
+  for (const file of files) {
+    if (!validateMediaSize(file)) {
+      fileInput.value = "";
+      fileCount.classList.add("hidden");
+      return;
+    }
+  }
+  mediaBlobs = files;
+  usingRecord = false;
+  currentIndex = 0;
+  // Update file count display
+  fileCount.innerHTML = `📁 ${files.length} ${files.length === 1 ? 'file' : 'files'} selected`;
+  fileCount.classList.remove("hidden");
+  
+  openRecheck(mediaBlobs[currentIndex]);
+  if (mediaBlobs.length > 1) {
+    nextBtn.style.display = "block";
+    confirmBtn.style.display = "none";
+  } else {
+    nextBtn.style.display = "none";
+    confirmBtn.style.display = "block";
+  }
+});
+
+// NEXT BUTTON
+nextBtn.addEventListener("click", () => {
+  successClick.currentTime = 0; successClick.play();
+  if (currentIndex < mediaBlobs.length - 1) {
+    currentIndex++;
+    openRecheck(mediaBlobs[currentIndex]);
+    if (currentIndex === mediaBlobs.length - 1) {
+      nextBtn.style.display = "none";
+      confirmBtn.style.display = "block";
+    }
+  }
 });
 
 // MODAL ACTIONS
 redoBtn.addEventListener("click", () => {
   modal.classList.add("hidden");
-  mediaBlob = null;
   confirmed = false;
   fileInput.value = "";
-
+  mediaBlobs = [];
+  currentIndex = 0;
   recordTick.classList.add("hidden");
   uploadTick.classList.add("hidden");
+  fileCount.classList.add("hidden");
 });
 
 confirmBtn.addEventListener("click", () => {
+  successClick.currentTime = 0; successClick.play();
   confirmed = true;
   modal.classList.add("hidden");
 
-  if (mediaBlob) {
-    if (mediaBlob.type.startsWith("audio")) {
+  if (mediaBlobs.length > 0) {
+    if (usingRecord) {
       recordTick.classList.remove("hidden");
     } else {
       uploadTick.classList.remove("hidden");
@@ -204,48 +241,46 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const userName = nameInput.value.trim();
 
-  // Validation: name length
+  // Name validation
   if (userName.length < MIN_NAME_LENGTH) {
     errorClick.currentTime = 0; errorClick.play();
     alert("Please enter at least 3 characters for your name.");
     return;
   }
-  // Validation: media present
-  if (!mediaBlob) {
+  // Media present
+  if (mediaBlobs.length === 0) {
     errorClick.currentTime = 0; errorClick.play();
     alert("Please record or upload your wish.");
     return;
   }
-  // Validation: confirm recording
+  // Confirmed
   if (!confirmed) {
     errorClick.currentTime = 0; errorClick.play();
     alert("Please confirm your recording first.");
     return;
   }
 
-  // ✅ Valid submission: play success sound
+  // Valid submission
   successClick.currentTime = 0;
   successClick.play();
 
   submitBtn.disabled = true;
   submitBtn.textContent = "Submitting...";
 
-  // Upload to Cloudinary
-  const formData = new FormData();
-  formData.append("file", mediaBlob);
-  formData.append("upload_preset", UPLOAD_PRESET);
-
   try {
-    const res = await fetch(
-      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`,
-      { method: "POST", body: formData }
-    );
-    const data = await res.json();
-    if (!data.secure_url) {
-      alert("Upload failed. Please try again.");
-      submitBtn.disabled = false;
-      submitBtn.textContent = "💌 SUBMIT YOUR WISH";
-      return;
+    // Upload to Cloudinary
+    const uploadPromises = mediaBlobs.map(blob => {
+      const fd = new FormData();
+      fd.append("file", blob);
+      fd.append("upload_preset", UPLOAD_PRESET);
+      return fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`, { method: "POST", body: fd });
+    });
+    const responses = await Promise.all(uploadPromises);
+    const dataList = await Promise.all(responses.map(res => res.json()));
+    const mediaUrls = [];
+    for (const data of dataList) {
+      if (!data.secure_url) throw new Error("Upload failed");
+      mediaUrls.push(data.secure_url);
     }
 
     // Send to Make.com webhook
@@ -253,20 +288,20 @@ form.addEventListener("submit", async (e) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        title: username,
         name: userName,
-        mediaUrl: data.secure_url,
+        mediaUrls: mediaUrls,
         source: "Orina Birthday Website"
       })
     });
 
-   // 🎉 Show success popup before redirect
-   const popup = document.getElementById("successPopup");
-   popup.classList.remove("hidden");
-   
-   // Delay redirect for smooth UX
-   setTimeout(() => {
-     window.location.href = "thankyou.html";
-     }, 1600);
+    // Show success popup, then redirect
+    const popup = document.getElementById("successPopup");
+    popup.classList.remove("hidden");
+    
+    setTimeout(() => {
+      window.location.href = "thankyou.html";
+    }, 1600);
 
   } catch (err) {
     console.error(err);
@@ -281,7 +316,6 @@ form.addEventListener("submit", async (e) => {
 function checkDeadline() {
   const now = new Date();
   if (now > DEADLINE) {
-    // Disable submit and inputs
     submitBtn.disabled = true;
     submitBtn.textContent = "⛔ Submissions Closed";
     submitBtn.style.opacity = "0.5";
@@ -291,13 +325,12 @@ function checkDeadline() {
     recordBtn.style.opacity = "0.4";
     recordBtn.style.cursor = "not-allowed";
 
-    // Update banner
     deadlineBanner.innerHTML =
       "⛔ <b>Submissions are closed.</b> Thank you for the love ❤️";
   }
 }
 
-// BALLOON ANIMATION (unchanged)
+// BALLOON ANIMATION
 const balloonContainer = document.querySelector(".balloon-rain");
 function createBalloon(startRandom = false) {
   const balloon = document.createElement("div");
@@ -315,9 +348,10 @@ function createBalloon(startRandom = false) {
 }
 for (let i = 0; i < 12; i++) createBalloon(true);
 setInterval(createBalloon, 1200);
+
 checkDeadline();
 
-// LINK CLICK SOUND
+// Click sound for links
 document.querySelectorAll("a").forEach(link => {
   link.addEventListener("click", () => {
     successClick.currentTime = 0;
