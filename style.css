@@ -13,7 +13,7 @@ body {
   color: #fff;
   overflow-x: hidden;
 }
-/*BALLOON REVERSE RAIN */
+/* BALLOON RAIN */
 .balloon-rain {
   position: fixed;
   inset: 0;
@@ -25,7 +25,7 @@ body {
 .balloon {
   position: absolute;
   bottom: -40px;
-  font-size: 20px; /* same size */
+  font-size: 20px;
   opacity: 0.15;
   animation-name: floatUp;
   animation-timing-function: linear;
@@ -33,36 +33,30 @@ body {
 }
 
 @keyframes floatUp {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-120vh);
-  }
+  from { transform: translateY(0); }
+  to   { transform: translateY(-120vh); }
 }
 
-/* remove blue colour tap*/
+/* Remove tap highlight */
 button,
 a,
 label {
   -webkit-tap-highlight-color: transparent;
 }
-/*CUSTOM TAP FEEDBACK*/
+/* Tap feedback */
 button,
 a,
 .upload {
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
-
 button:active,
 a:active,
 .upload:active {
   transform: scale(0.96);
   box-shadow: 0 0 14px rgba(0, 0, 0, 0.6);
 }
-/* =========================
-   HEADER
-========================= */
+
+/* HEADER */
 .top-bar {
   display: flex;
   align-items: center;
@@ -75,48 +69,33 @@ a:active,
   align-items: center;
   gap: 14px;
 }
-
 .brand img {
-  height: 42px; /* LOGO HEIGHT */
+  height: 42px;
 }
-
-/* 🔥 Unstoppable Family BIG AS LOGO */
+/* Unstoppable Family logo */
 .brand span {
   font-size: 28px;
   font-weight: 700;
   line-height: 1;
-  background: linear-gradient(
-    270deg,
-    #ff7a00,
-    #ffd36a,
-    #ff3c00
-  );
+  background: linear-gradient(270deg, #ff7a00, #ffd36a, #ff3c00);
   background-size: 400% 400%;
   -webkit-background-clip: text;
   color: transparent;
   animation: slowGradient 10s linear infinite;
 }
-
-/* 🎥 YouTube */
+/* YouTube Link */
 .youtube {
   font-size: 18px;
   font-weight: 600;
   text-decoration: none;
-  background: linear-gradient(
-    270deg,
-    #ff3c00,
-    #ffb347,
-    #ff7a00
-  );
+  background: linear-gradient(270deg, #ff3c00, #ffb347, #ff7a00);
   background-size: 400% 400%;
   -webkit-background-clip: text;
   color: transparent;
   animation: slowGradient 18s linear infinite;
 }
 
-/* =========================
-   MAIN CONTAINER
-========================= */
+/* MAIN CONTAINER */
 .container {
   max-width: 430px;
   margin: auto;
@@ -148,16 +127,13 @@ a:active,
     width: 140px;
     height: 140px;
   }
-
   .name {
     font-size: 52px;
   }
-
   .card {
     transform: scale(1.03);
   }
 }
-
 @media (min-width: 900px) {
   .pfp {
     width: 140px;
@@ -171,9 +147,7 @@ a:active,
   }
 }
 
-/* =========================
-   HERO SECTION
-========================= */
+/* HERO SECTION */
 .hero {
   text-align: center;
   margin-top: 12px;
@@ -190,54 +164,41 @@ a:active,
   box-shadow: 0 0 30px rgba(255, 120, 0, 0.5);
   animation: pulseGlow 3s ease-in-out infinite;
 }
-
 .pfp img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
 }
-
 .subtitle {
   margin-top: 14px;
   opacity: 0.75;
 }
-
 .name {
   margin-top: 6px;
   font-size: 42px;
 }
-
 .orina {
   color: #ff7a00;
   text-shadow: 0 0 16px rgba(255, 120, 0, 0.6);
 }
-
 .tanu {
   font-size: 22px;
   opacity: 0.85;
 }
-
 .event {
   margin-top: 6px;
   font-size: 14px;
 }
-
 .event span {
-  background: linear-gradient(
-    270deg,
-    #ff7a00,
-    #ffd36a,
-    #ff3c00
-  );
+  background: linear-gradient(270deg, #ff7a00, #ffd36a, #ff3c00);
   background-size: 400% 400%;
   -webkit-background-clip: text;
   color: transparent;
   animation: slowGradient 20s linear infinite;
 }
-/* =========================
-   SUBMISSION DEADLINE
-========================= */
+
+/* SUBMISSION DEADLINE */
 .deadline {
   margin-top: 18px;
   margin-bottom: 6px;
@@ -245,30 +206,20 @@ a:active,
   font-size: 14px;
   opacity: 0.9;
 }
-
 .deadline-date {
   display: inline-block;
   margin-left: 6px;
   padding: 4px 10px;
   border-radius: 12px;
-
-  background: linear-gradient(
-    270deg,
-    #ff7a00,
-    #ffd36a,
-    #ff3c00
-  );
+  background: linear-gradient(270deg, #ff7a00, #ffd36a, #ff3c00);
   background-size: 400% 400%;
-
   color: #000;
   font-weight: 600;
-
   animation: slowGradient 18s linear infinite;
   box-shadow: 0 0 14px rgba(255, 120, 0, 0.45);
 }
-/* =========================
-   FORM CARD
-========================= */
+
+/* FORM CARD */
 .card {
   margin-top: 24px;
   padding: 20px;
@@ -276,13 +227,11 @@ a:active,
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(14px);
 }
-
 label {
   display: block;
   font-weight: 600;
   margin-top: 14px;
 }
-
 input {
   width: 100%;
   margin-top: 6px;
@@ -293,13 +242,11 @@ input {
   color: white;
   outline: none;
 }
-
 .media-options {
   display: flex;
   gap: 12px;
   margin-top: 12px;
 }
-
 .media-options button,
 .upload {
   flex: 1;
@@ -311,14 +258,22 @@ input {
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .media-options button:hover,
 .upload:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 20px rgba(255, 120, 0, 0.3);
 }
 
-/* SUBMIT */
+/* FILE COUNT DISPLAY */
+.file-count {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #fff;
+  opacity: 0.9;
+  text-align: center;
+}
+
+/* SUBMIT BUTTON */
 .submit-btn {
   margin-top: 22px;
   width: 100%;
@@ -332,15 +287,11 @@ input {
   box-shadow: 0 0 26px rgba(255, 120, 0, 0.45);
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 footer {
   text-align: center;
   margin: 20px 0 10px;
 }
-
-/* 🔥 INDRAV BRANDING */
 .indrav {
   font-family: "IM Fell Double Pica SC", serif;
   font-size: 22px;
@@ -349,89 +300,54 @@ footer {
   gap: 6px;
   animation: floatSubtle 3s ease-in-out infinite;
 }
-
-/* Arrow fixed */
 .arrow {
   color: #ff7a00;
 }
-
-/* 🔥 Gradient loop RIGHT → LEFT */
 .indrav-text {
-  background: linear-gradient(
-    270deg,
-    #ff7a00,
-    #ffffff,
-    #ff7a00
-  );
+  background: linear-gradient(270deg, #ff7a00, #ffffff, #ff7a00);
   background-size: 400% 400%;
   -webkit-background-clip: text;
   color: transparent;
   animation: slowGradientReverse 14s linear infinite;
 }
-
-/* 🔥 SLOGAN */
 .slogan {
   margin-top: 8px;
   font-size: 14px;
-  background: linear-gradient(
-    270deg,
-    #ff7a00,
-    #ffd36a,
-    #ff3c00
-  );
+  background: linear-gradient(270deg, #ff7a00, #ffd36a, #ff3c00);
   background-size: 400% 400%;
   -webkit-background-clip: text;
   color: transparent;
   animation: slowGradient 22s linear infinite;
 }
 
-/* =========================
-   ANIMATIONS (SAFE)
-========================= */
+/* ANIMATIONS */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
 }
-
 @keyframes pulseGlow {
-  0% {
-    box-shadow: 0 0 18px rgba(255, 120, 0, 0.4);
-  }
-  100% {
-    box-shadow: 0 0 34px rgba(255, 120, 0, 0.7);
-  }
+  0% { box-shadow: 0 0 18px rgba(255, 120, 0, 0.4); }
+  100% { box-shadow: 0 0 34px rgba(255, 120, 0, 0.7); }
 }
-
 @keyframes slowGradient {
   0% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
-/* RIGHT → LEFT LOOP */
 @keyframes slowGradientReverse {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 }
-
 @keyframes floatSubtle {
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-3px); }
 }
-
 @media (max-height: 700px) {
   footer {
     margin-top: 10px;
   }
 }
-/* =========================
-   RECHECK MODAL
-========================= */
+
+/* RECHECK MODAL */
 .recheck-modal {
   position: fixed;
   inset: 0;
@@ -442,11 +358,9 @@ footer {
   justify-content: center;
   z-index: 999;
 }
-
 .recheck-modal.hidden {
   display: none;
 }
-
 .recheck-card {
   width: 92%;
   max-width: 360px;
@@ -457,24 +371,20 @@ footer {
   box-shadow: 0 0 40px rgba(255,122,0,0.35);
   animation: fadeUp 0.4s ease;
 }
-
 .recheck-card h3 {
   margin-bottom: 14px;
 }
-
 .recheck-card audio,
 .recheck-card video {
   width: 100%;
   margin: 10px 0;
   border-radius: 10px;
 }
-
 .recheck-actions {
   display: flex;
   gap: 12px;
   margin-top: 16px;
 }
-
 .primary-btn {
   flex: 1;
   padding: 12px;
@@ -484,7 +394,6 @@ footer {
   color: white;
   cursor: pointer;
 }
-
 .secondary-btn {
   flex: 1;
   padding: 12px;
@@ -494,65 +403,51 @@ footer {
   color: white;
   cursor: pointer;
 }
-/* =========================
-   BGM TOGGLE 
-========================= */
+
+/* BGM TOGGLE */
 #bgmToggle {
   position: fixed;
   right: 18px;
   bottom: 22px;
   z-index: 1000;
-
   padding: 12px 18px;
   border-radius: 99px;
-
   background: rgba(18, 18, 18, 0.9);
   color: #fff;
-
   border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(10px);
-
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.4px;
-
   cursor: pointer;
-
   box-shadow:
     0 10px 35px rgba(0, 0, 0, 0.7),
     inset 0 0 0 1px rgba(255, 122, 0, 0.25);
-
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
     background 0.2s ease;
 }
-
-/* Hover (desktop) */
 #bgmToggle:hover {
   background: rgba(28, 28, 28, 0.95);
   box-shadow:
     0 14px 45px rgba(0, 0, 0, 0.85),
     inset 0 0 0 1px rgba(255, 122, 0, 0.45);
 }
-
-/* Active / Tap */
 #bgmToggle:active {
   transform: scale(0.96);
 }
-
-/* Optional: glow when music is playing */
 #bgmToggle.playing {
   box-shadow:
     0 0 30px rgba(255, 122, 0, 0.6),
     inset 0 0 0 1px rgba(255, 122, 0, 0.6);
 }
 
+/* LINK TAP FEEDBACK */
 .highlight a:active {
   transform: scale(0.95);
   box-shadow: inset 0 0 0 2px rgba(255,122,0,0.6);
 }
-
 img,
 audio,
 video {
@@ -560,9 +455,8 @@ video {
   user-drag: none;
   user-select: none;
 }
-/* =========================
-   SUCCESS POPUP
-========================= */
+
+/* SUCCESS POPUP */
 .success-popup {
   position: fixed;
   inset: 0;
@@ -574,11 +468,9 @@ video {
   z-index: 2000;
   pointer-events: none;
 }
-
 .success-popup.hidden {
   display: none;
 }
-
 .success-card {
   margin-bottom: 80px;
   background: rgba(20, 20, 20, 0.95);
@@ -588,12 +480,10 @@ video {
   box-shadow: 0 0 40px rgba(255, 122, 0, 0.5);
   animation: slideUpPop 0.6s ease forwards;
 }
-
 .success-icon {
   font-size: 34px;
   margin-bottom: 8px;
 }
-
 .success-card h3 {
   font-size: 20px;
   margin-bottom: 4px;
@@ -601,12 +491,10 @@ video {
   -webkit-background-clip: text;
   color: transparent;
 }
-
 .success-card p {
   font-size: 14px;
   opacity: 0.85;
 }
-
 @keyframes slideUpPop {
   from {
     transform: translateY(120px);
@@ -617,9 +505,8 @@ video {
     opacity: 1;
   }
 }
-/* =========================
-   SUCCESS TICK
-========================= */
+
+/* SUCCESS TICK */
 .tick {
   display: inline-block;
   margin-left: 6px;
@@ -628,11 +515,9 @@ video {
   text-shadow: 0 0 8px rgba(0,255,156,0.8);
   animation: popTick 0.4s ease;
 }
-
 .tick.hidden {
   display: none;
 }
-
 @keyframes popTick {
   from {
     transform: scale(0.4);
