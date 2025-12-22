@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Birthday Wishes • Unstoppable Family</title>
+
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=IM+Fell+Double+Pica+SC&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+   <!-- ✅ RECHECK MODAL (FULL WRAPPER) -->
+  <div id="recheckModal" class="recheck-modal hidden">
+    <div class="recheck-card">
+      <h3>Review your wish 🎧</h3>
+
+      <audio id="recheckAudio" controls hidden></audio>
+      <video id="recheckVideo" controls hidden></video>
+
+      <div class="recheck-actions">
+        <button id="redoBtn" class="secondary-btn">🔄 Record Again</button>
+        <button id="confirmBtn" class="primary-btn">✅ Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎈 BACKGROUND -->
+  <div class="balloon-rain" aria-hidden="true"></div>
+
+  <!-- AUDIO -->
+  <audio id="bgm" src="assets/bgm.mp3" loop preload="none"></audio>
+  <audio id="successClick" src="assets/click.mp3" preload="auto"></audio>
+  <audio id="errorClick" src="assets/alert-click.mp3" preload="auto"></audio>
+
+<!-- 🌟 HEADER -->
+<header class="top-bar">
+  <div class="brand">
+    <img src="assets/ul10.webp" alt="Unstoppable Family"/>
+    <span>Unstoppable Family</span>
+  </div>
+
+  <a href="https://www.youtube.com/@UNSTOPPABLE-f8e" target="_blank" class="youtube" align="center">
+    [  ▶︎ ]
+    YouTube
+  </a>
+</header>
+
+<!-- 🎂 MAIN -->
+<main class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="pfp">
+      <img src="assets/op25f.webp" alt="Orina"/>
+    </div>
+    <p class="subtitle" align="center">submit your wish for</p>
+
+    <h1 class="name">
+      <span class="orina">Orina</span>
+      <span class="tanu">(Tanu)</span>
+    </h1>
+    <p class="subtitle" align="center"> on her special day ❤️</p>
+    <br/>
+
+    <p class="event">
+      Birthday Event of the <span>Unstoppable Family</span>
+    </p>
+  </section>
+  <!--deadline-->
+  <div class="deadline">
+    ⏰ Last submission date:
+    <span class="deadline-date">25 December 2025</span>
+  </div>
+
+  <!-- FORM -->
+  <form id="wishForm" class="card">
+
+    <label>🧑‍💼 Your Name <i>(using on weplay)</i></label>
+    <input id="name" type="text" placeholder="Submit your weplay name" required/>
+    
+    <label>📝 <b>Record or Upload</b> your Wish <i>(2 Options)</i></label>
+
+    <div class="media-options">
+      <button type="button" id="recordBtn">
+        <b><big>🎤️ Record Audio</big></b><br/><p>(max:50mb)</p>
+      </button>
+
+      <label class="upload" align="center">
+        📤 Upload <br/> Audio / Video
+        <input id="fileInput" type="file" accept="audio/*,video/*" hidden>
+      </label>
+    </div>
+
+    <audio id="preview" controls hidden></audio>
+
+    <button type="submit" class="submit-btn">
+      <b>💌 SUBMIT YOUR WISH</b>
+    </button>
+
+  </form>
+
+</main>
+
+<!-- 🔥 FOOTER -->
+<footer>
+  <div class="indrav">
+    <span class="arrow">𐏃</span>
+    <span class="indrav-text">Indrav</span>
+  </div>
+
+  <p class="slogan">
+    We are <b>Unstoppable</b> + <b>Unbreakable</b> 💥
+  </p>
+  
+  <button id="bgmToggle">🎧 ᴘʟᴀʏ</button>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
