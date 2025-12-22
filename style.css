@@ -617,3 +617,29 @@ video {
     opacity: 1;
   }
 }
+/* =========================
+   SUCCESS TICK
+========================= */
+.tick {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 16px;
+  color: #00ff9c;
+  text-shadow: 0 0 8px rgba(0,255,156,0.8);
+  animation: popTick 0.4s ease;
+}
+
+.tick.hidden {
+  display: none;
+}
+
+@keyframes popTick {
+  from {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
