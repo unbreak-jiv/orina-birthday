@@ -95,9 +95,11 @@
 
       <label class="upload" align="center">
         📤 Upload <br/> Audio / Video<span class="tick hidden" id="uploadTick">✔</span>
-        <input id="fileInput" type="file" accept="audio/*,video/*" hidden>
+        <input id="fileInput" type="file" accept="audio/*,video/*" multiple hidden>
         </label>
     </div>
+    <p id="fileCount" class="file-count hidden">📁 Files selected: <span id="fileNumber">0</span> / 3
+    </p>
 
     <audio id="preview" controls hidden></audio>
 
