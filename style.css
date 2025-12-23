@@ -490,3 +490,52 @@ video {
   from { transform: scale(0.4); opacity: 0; }
   to   { transform: scale(1); opacity: 1; }
 }
+/* ============================================
+   MEDIA PROTECTION CSS
+   ============================================ */
+
+/* Prevent drag on all images */
+img {
+  -webkit-user-drag: none !important;
+  user-drag: none !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  pointer-events: none !important;
+}
+
+/* Protect audio & video players */
+audio,
+video {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  pointer-events: auto !important;  /* Keep player functional */
+}
+
+/* Prevent text selection on brand/logo */
+.brand,
+.name,
+.pfp,
+.hero {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
+/* Hide context menu cursor */
+img {
+  cursor: not-allowed !important;
+  -webkit-touch-callout: none !important;
+}
+
+/* Disable print stylesheet */
+@media print {
+  body,
+  img,
+  video,
+  audio {
+    display: none !important;
+  }
+}
