@@ -1,4 +1,62 @@
 // Get DOM elements
+// ============================================
+// ASSET PROTECTION - Prevent Downloads 
+// ============================================
+
+// 1. DISABLE RIGHT-CLICK on images/media
+document.addEventListener('contextmenu', (e) => {
+  if (e.target.tagName === 'IMG' || 
+      e.target.tagName === 'AUDIO' || 
+      e.target.tagName === 'VIDEO') {
+    e.preventDefault();
+    errorClick.play();
+    alert('❌ This content is protected');
+    return false;
+  }
+});
+
+// 2. DISABLE DRAG & DROP on images
+document.addEventListener('dragstart', (e) => {
+  if (e.target.tagName === 'IMG' || 
+      e.target.tagName === 'AUDIO' || 
+      e.target.tagName === 'VIDEO') {
+    e.preventDefault();
+    return false;
+  }
+});
+
+// 3. DISABLE INSPECT ELEMENT on media
+document.addEventListener('mousedown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') {
+    e.preventDefault();
+    return false;
+  }
+  // Also block F12
+  if (e.key === 'F12') {
+    e.preventDefault();
+    return false;
+  }
+});
+
+// 4. DISABLE COPY on all content
+document.addEventListener('copy', (e) => {
+  e.preventDefault();
+  return false;
+});
+
+// 5. DISABLE KEYBOARD SHORTCUTS
+document.addEventListener('keydown', (e) => {
+  // Ctrl+S or Cmd+S (Save)
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+    e.preventDefault();
+    return false;
+  }
+  // Ctrl+P or Cmd+P (Print)
+  if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+    e.preventDefault();
+    return false;
+  }
+});
 const form = document.getElementById("wishForm");
 form.setAttribute("action", "javascript:void(0)");
 form.noValidate = true;
