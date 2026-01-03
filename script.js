@@ -100,9 +100,9 @@ const UPLOAD_PRESET = "orina_birthday";
 const MAKE_WEBHOOK_URL = "https://hook.eu2.make.com/qigqaow6gli2oulrippv4rcb9novog4h";
 
 // Submission deadline
-const DEADLINE = new Date("2025-12-27T12:00:00");
+const DEADLINE = new Date("2026-01-5T12:00:00");
 
-// State
+// State 
 let mediaRecorder;
 let chunks = [];
 let mediaBlobs = [];
