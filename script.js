@@ -397,7 +397,7 @@ function checkDeadline() {
   const now = new Date();
   if (now > DEADLINE) {
     submitBtn.disabled = true;
-    submitBtn.textContent = "⛔ Submissions Closed";
+    submitBtn.textContent = "⛔ Submissions Closed on 5 January";
     submitBtn.style.opacity = "0.5";
     submitBtn.style.cursor = "not-allowed";
     recordBtn.disabled = true;
